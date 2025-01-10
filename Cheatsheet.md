@@ -26,7 +26,7 @@ use myfancydatabase;
 
 ### Create user and grant all permissions to it
 ```sql
-create user pj identified by `Pj@123456`;
+create user pj identified by 'Pj@123456';
 grant all on *.* to pj;
 ```
 
