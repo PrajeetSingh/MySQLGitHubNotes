@@ -29,7 +29,7 @@ sudo systemctl start mysql.service
 sudo systemctl status mysql.service
 ```
 
-#### Verify MySQL' pid and the files in use
+Verify MySQL' pid and the files in use
 ```sh
 pidof mysqld
 sudo lsof -u mysql
