@@ -1,2 +1,3 @@
 # My SQL Notes
-Created this repository to share MySQL stuff.
+Created this repository for MySQL knowledge sharing.
+Your suggestions are more than welcome!
