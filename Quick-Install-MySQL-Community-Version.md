@@ -1,5 +1,5 @@
+#### Below is the script I use to quickly install MySQL Community version on newly created AWS VM
 <!--
-Below is the script I use to quickly install MySQL Community version on AWS newly created VM
 It is downloading mysql community version from Oracle's MySQL site, then installing, and starting MySQL
 3306 is default port of MySQL
 When MySQL is installed, temporary password of "root" user is put in /var/log/mysqld.log file.
@@ -19,6 +19,7 @@ sudo cat /var/log/mysqld.log | grep 'password';
 mysql -u root -p
 ```
 
+#### Change password of root user
 ```sql
 alter user root@localhost identified by 'Root@321'; exit;
 ```
@@ -26,6 +27,7 @@ alter user root@localhost identified by 'Root@321'; exit;
 <!--
 Below command will help in setting password less entry for mysql "root" user.
 -->
+#### Setup password less entry for root
 ```sh
 mysql_config_editor set --host=localhost --login-path=client --user=root --password
 
