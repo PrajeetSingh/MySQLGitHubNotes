@@ -1,49 +1,49 @@
 ### MySQL Cheatsheet
 
 #### Startup / Shutdown / Status. For mariadb, instead of mysqld, it can be either mariadb or mysql, depending on version.
-'''sh
+```sh
 sudo systemctl start mysqld
 sudo systemctl stop mysqld
 sudo systemctl status mysqld
-'''
+```
 
 ### Login to mysql
-'''sql
+```sql
 mysql -u root -p
 -- or
 mysql
-'''
+```
 
 ### List databases
-'''sql
+```sql
 show databases;
-'''
+```
 
 ### Switch to a database use it
-'''sql
+```sql
 use myfancydatabase;
-'''
+```
 
 ### Create user and grant all permissions to it
-'''sql
-create user pj identified by 'Pj@123456';
+```sql
+create user pj identified by `Pj@123456`;
 grant all on *.* to pj;
-'''
+```
 
 ### Show current user
-'''sql
+```sql
 select user();
 select current_user();
-'''
+```
 
 ### Show current database
-'''sql
+```sql
 select database();
-'''
+```
 
 ### Check DB Version
-'''sql
+```sql
 show version;
 select version();
-'''
+```
 
