@@ -71,3 +71,87 @@ cat myscript.sql | mysql --host=localhost myfancydatabase
 show global variables like 'max_connections';
 show global variables like '%buffer_pool%';
 ```
+
+#### Show help
+```sql
+\h 
+-- or 
+\?
+```
+
+#### Show status
+```sql
+\s
+-- or
+status
+```
+
+#### Edit
+```sql
+\e 
+-- or 
+edit
+```
+
+#### Clear screen
+```sql
+\c 
+-- or 
+clear
+```
+
+#### Reconnect to server
+```sql
+\r 
+-- or 
+connect
+```
+
+#### Display query results vertically
+```sql
+\G
+```
+
+#### Set output file
+```sql
+\T or tee
+\t or untee
+```
+
+#### Show warnings after every statement
+```sql
+\W or warnings
+\w or nowarning
+```
+
+#### Some Show commands
+```sql
+show databases | tables | views | users;
+show tables like '%view%';
+show tables from myfancydatabase;
+show binary logs;
+show binlog events;
+show engines;
+show create table|user|database;
+show errors;
+show warnings;
+show events;
+show triggers;
+show processlist;
+-- Remember: we can use "like" clause in "show" command.
+```
+
+#### Check Processlist
+```sql
+describe information_schema.processlist;
+select id, user, db, time from information_schema.processlist;
+-- or
+show processlist;
+```
+
+#### Check existing MySQL users
+```sql
+select user, host from user;
+```
+
+
