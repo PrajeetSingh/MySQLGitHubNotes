@@ -66,3 +66,8 @@ mysql --host=localhost myfancydatabase < myscript.sql
 cat myscript.sql | mysql --host=localhost myfancydatabase
 ```
 
+#### Check value of a variable / parameter
+```sql
+show global variables like 'max_connections';
+show global variables like '%buffer_pool%';
+```
