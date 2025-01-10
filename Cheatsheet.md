@@ -1,4 +1,4 @@
-### MySQL Cheatsheet
+## MySQL Cheatsheet
 
 #### Startup / Shutdown / Status. For mariadb, instead of mysqld, it can be either mariadb or mysql, depending on version.
 ```sh

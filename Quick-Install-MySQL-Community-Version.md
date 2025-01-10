@@ -5,6 +5,7 @@ It is downloading mysql community version from Oracle's MySQL site, then install
 When MySQL is installed, temporary password of "root" user is put in /var/log/mysqld.log file.
 "mysql -u root -p" will help you login to MySQL and prompt for password, you can put temporary password, then change that after login using "atler user" command.
 --> 
+I simply copy paste entire part of script on newly created server and run these
 ```sh
 wget https://dev.mysql.com/get/mysql84-community-release-el9-1.noarch.rpm;
 sudo dnf install mysql84-community-release-el9-1.noarch.rpm -y;
@@ -31,5 +32,6 @@ Below command will help in setting password less entry for mysql "root" user.
 ```sh
 mysql_config_editor set --host=localhost --login-path=client --user=root --password
 
+# Verify passwordless configuration
 mysql_config_editor print --all
 ```
