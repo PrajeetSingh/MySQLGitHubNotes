@@ -1,6 +1,7 @@
 ## Clean Shutdown of MySQL Instance
 
-Ensure that value of parameter innodb_fast_shutdown is set to 0, otherwise set it to 0 before shutting MySQL instance down.
+Ensure that value of parameter innodb_fast_shutdown is set to 0, otherwise set it to 0 before shutting MySQL instance down. Default value of innodb_fast_shutdown is 1 i.e., skipping some tasks and perform quicker shutdown. This is a Dynamic parameter.
+
 There is no "shutdown immediate" in MySQL.
 
 ```sql
