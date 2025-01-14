@@ -159,7 +159,7 @@ select user, host from user;
 show global variables like 'datadir';
 ```
 
-### WHere are my System data files, like undo, redo, etc?
+### Where are my System data files, like undo, redo, etc?
 ```sql
 show global variables like 'innodb_data%';
 ```

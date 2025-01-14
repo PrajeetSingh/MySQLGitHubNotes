@@ -1,6 +1,6 @@
 ## Perform MySQL Cold Backup
 
-### Step 1: Check location of data directory and system directory
+### Step 1: Check location of data directory and system tablespaces
 ```sql
 show global variables like 'datadir';
 show global variables like 'innodb_data%';
@@ -22,4 +22,4 @@ sudo cp -r /var/lib/mysql /tmp/mysql_coldbackup
 sudo cp -r /etc/mysql.cnf /tmp/mysql_coldbackup
 ```
 
-**REMEMBER:** We don't need to backup binlogs, doublewrite files, redo logs, etc, as we have cleanly shutdown the MySQL Instance.
+**REMEMBER:** We don't need to backup binlogs, doublewrite files, redo logs, undo tablespaces, temp files, etc, as we have cleanly shutdown the MySQL Instance.
