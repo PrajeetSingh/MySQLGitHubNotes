@@ -163,10 +163,3 @@ show global variables like 'datadir';
 ```sql
 show global variables like 'innodb_data%';
 ```
-
-### Clean shutdown of MySQL instance
-```sql
-show global variables like 'innodb_fast_shutdown';
-set global innodb_fast_shutdown=0;
-sudo systemctl stop mysqld.service
-```
