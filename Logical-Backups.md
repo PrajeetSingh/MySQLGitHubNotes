@@ -46,3 +46,38 @@ mysql world < city.sql
 # Restore database world. Notice, we are not using just "mysql" and the script.
 mysql < world.sql
 ```
+
+### mysqlpump
+
+This utility has more features than mysqldump. 
+
+* Parallel processing of databases to speed up the dump process
+* Better control over which database objects like tables, stored procedures, user accounts, etc to dump
+* Dumping of user accounts as account-management statements rather than as inserts into the mysql system database
+* Compress output & Dump progress, which is not shown in mysqldump 
+* By default, mysqlpump dumps all the databases 
+* mysqlpump was deprecated in version 8.0.34 and remove in higher versions 
+
+### Syntax of mysqlpump 
+```sh 
+# If you just run mysqlpump will all database, it dump system tablespaces too and at the time of restore, it fails because system databases are already there.
+# So, adding "--add-drop-database" or "--add-drop-table" help in these scenarios.
+mysqlpump [options] db_name [table_name] --add-drop-table > backup_name.sql
+
+# Below statement, backups all users including roles but exclude all databases.
+mysqlpump [options] --execlude-databases=% -users > usres.sql
+mysqlpump [options] --databases db1 db2 ... --add-drop-database > backup_name.sql
+mysqlpump [options] --all-databases > backup_name.sql
+```
+
+### Examples of mysqlpump 
+```sh
+# Take a backup of "city" table.
+mysqlpump world city > city_pump.sql
+or
+mysqlpump world city --add-drop-table > city_pump.sql
+
+mysqlpump --databases world --add-drop-database > pump_world.sql
+
+mysql < pump_world.sql
+```
