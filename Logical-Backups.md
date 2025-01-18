@@ -8,7 +8,7 @@ Using these utilities, we can backup tables, tables with where clause, skipping 
 
 ### mysqldump
 
-Syntax:
+#### Syntax:
 ```sh
 mysqldump [options] db_name [table_name] > backup_name.sql
 mysqldump [options] db_name [table_name] -where="condition" > backup_name.sql
@@ -17,7 +17,7 @@ mysqldump [options] -databases db1 db2 ... > backup_name.sql
 mysqldump [options] -all-databases > backup_name.sql
 ```
 
-Example:
+#### Example:
 ```sh
 wget https://downloads.mysql.com/docs/world-db.zip
 # Backup table city
@@ -82,7 +82,7 @@ mysqlpump --databases world --add-drop-database > pump_world.sql
 mysql < pump_world.sql
 ```
 
-### Taking backup DB Users and Roles 
+### Taking backup of DB Users and Roles 
 Not all versions have both mysqlpump. Taking backup with mysqlpump is easier but if it is not available (like in some MySQL community versions), then we need to backup "mysql" database.
 "mysql" database contains user and role details too and as backkup of mysqldump are in sql format, we can use these to recreate users and roles.
 
@@ -100,4 +100,34 @@ mysqlpump -u [username] -p --exclude-databases=* --database=mysql --result-file=
 #### Backup users/roles using mysqldump utility
 ```sh
 mysqldump -u root -p mysql > mysqldb_backup.sql
+```
+
+### Compression in mysqlpump 
+* By default mysqlpump does not compress output.
+* Available options for compression algorithm for mysqlpump are LZ4 and ZLIB using option "--compress-output=LZ4|ZLIB". If we don't have these, then we nee dto install these.
+* Compressed backups on one side can save a lot of storage space but restore may take longer, as we need to un-compress the backups first before restore.
+
+#### Example 
+```sh 
+lz4 --version
+
+# Perform backup
+mysqlpump --databases <database_name> --compress-output=lz4 > mydb_pump.sql.lz4 
+
+# Restore backup
+lz4 -d mydb_pump.sql.lz4 mydb_pump.sql 
+mysql < mydb_pump.sql
+```
+
+### Compression in  mysqldump
+We do not have option like "--compress-output" in mysqldump, so we need to explicitly compress and decompress the backup.
+
+#### Example 
+```sh 
+# Perform backup
+mysqldump <database_name> | gzip > mydb_dump.sql.gz 
+
+# Restore backup
+gunzip < mydb.sql.gz | mysql -u <username> -p <database_name>
+
 ```
