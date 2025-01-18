@@ -129,5 +129,18 @@ mysqldump <database_name> | gzip > mydb_dump.sql.gz
 
 # Restore backup
 gunzip < mydb.sql.gz | mysql -u <username> -p <database_name>
+```
 
+### IMPORTANT: Consistent Backup using "--single-transaction"
+Whenver we run data pump backup using mysqldump or mysqlpump, always try to use "--single-transaction".
+Key points of this flag:
+* Consistency: It ensure that the backup reflects a consistent state of the database at the time the transaction started.
+* Non-blocking: If we don't use this flag, there can be lockings on tables for backup to run but it avoids locking tables.
+* Storage Engine Support: It is supported by all storage engines that support transactions, like InnoDB.
+
+#### Example 
+```sh 
+mysqlpump --databases mydb --single-transaction > mydb_pump.sql
+# or
+mysqldump mydb --single-transaction > mydb_dump.sql 
 ```
