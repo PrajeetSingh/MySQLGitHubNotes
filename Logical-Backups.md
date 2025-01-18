@@ -81,3 +81,23 @@ mysqlpump --databases world --add-drop-database > pump_world.sql
 
 mysql < pump_world.sql
 ```
+
+### Taking backup DB Users and Roles 
+Not all versions have both mysqlpump. Taking backup with mysqlpump is easier but if it is not available (like in some MySQL community versions), then we need to backup "mysql" database.
+"mysql" database contains user and role details too and as backkup of mysqldump are in sql format, we can use these to recreate users and roles.
+
+```sql 
+select user, host from mysql.user order by 1;
+```
+#### Backup users/roles using mysqlpump utility
+```sh
+# This command will ignore all databases and backup users. Along with create user/role commands, it'll add "drop user" commands before the create commands.
+mysqlpump --exclude-databases=% --users --add-drop-user > users.sql
+or
+# This command will backup mysql database, which contains create user/role commands in sql format
+mysqlpump -u [username] -p --exclude-databases=* --database=mysql --result-file=mysqldb_backup.sql
+```
+#### Backup users/roles using mysqldump utility
+```sh
+mysqldump -u root -p mysql > mysqldb_backup.sql
+```
