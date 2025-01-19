@@ -163,3 +163,11 @@ show global variables like 'datadir';
 ```sql
 show global variables like 'innodb_data%';
 ```
+
+### "create table like" sql statement
+```sql
+CREATE TABLE emp_backup LIKE emp;
+show create table emp_backup\G
+-- It is a copy of table without data. Otherwise, we can use commands same like Oracle, like "create table as select" and "insert into select"
+```
+
