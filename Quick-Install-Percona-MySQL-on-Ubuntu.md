@@ -5,6 +5,7 @@ I use this script to quickly install Percona MySQL on EC2 Ubuntu instance to tes
 Only installation required is of "percona-server-server". Rest are optional and as per your requirement. I have put ; at the end to run them together.
 
 **CAUTION:** If we try to install and use mysql_config_editor, that will remove percona-server-server, percona-server-client and percona-server-rocksdb, as mysql_config_editor is an Oracle community version utility.
+
 Tip: When we reinstall percona-server-server, percona-server-client and percona-server-rocksdb again after installation of mysql_config_editor, myysql_config_editor and percona mysql, both start working fine.
 
 ```sh
