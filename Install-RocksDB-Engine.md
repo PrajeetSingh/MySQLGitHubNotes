@@ -6,6 +6,7 @@ sudo apt install -y percona-server-rocksdb;
 ```
 
 **Step 2:** Enable the RocksDB storage engine in Percona Server
+
 Syntax:
 ```sh
 ps-admin --enable-rocksdb -u <mysql_admin_user> -p[mysql_admin_pass] [-S <socket>] [-h <host> -P <port>]
