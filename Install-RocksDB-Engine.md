@@ -1,11 +1,11 @@
 ## RocksDB Engine Installation
 
-*Step 1: * Install percona RocksDB
+**Step 1:** Install percona RocksDB
 ```sh 
 sudo apt install -y percona-server-rocksdb;
 ```
 
-*Step 2: * Enable the RocksDB storage engine in Percona Server
+**Step 2:** Enable the RocksDB storage engine in Percona Server
 Syntax:
 ```sh
 ps-admin --enable-rocksdb -u <mysql_admin_user> -p[mysql_admin_pass] [-S <socket>] [-h <host> -P <port>]
@@ -24,7 +24,7 @@ Installing RocksDB engine...
 INFO: Successfully installed RocksDB engine plugin.
 ```
 
-*Step 3: * Verify RocksDB installation
+**Step 3:** Verify RocksDB installation
 ```sql
 mysql> show engines;
 +--------------------+---------+----------------------------------------------------------------------------+--------------+------+------------+
