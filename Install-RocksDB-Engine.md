@@ -13,7 +13,7 @@ ps-admin --enable-rocksdb -u <mysql_admin_user> -p[mysql_admin_pass] [-S <socket
 ```
 Example:
 ```sh
-ps-admin --enable-rocksdb -u root -p
+sudo ps-admin --enable-rocksdb -u root -p
 
 Checking if RocksDB plugin is available for installation ...
 INFO: ha_rocksdb.so library for RocksDB found at /usr/lib/mysql/plugin/ha_rocksdb.so.
