@@ -6,7 +6,7 @@ Minor version is when we remain on Major version, ex: 8.0 but we want to upgrade
 
 ### INSTALL OLDER VERSION
 
-````sh
+```sh
 # Check existing installations
 dpkg -l | grep percona;
 sudo apt list --installed | grep -i mysql-server;
