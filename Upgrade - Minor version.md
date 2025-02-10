@@ -5,6 +5,8 @@ These are quick installation and upgrade steps for Minor version upgrade.
 Minor version is when we remain on Major version, ex: 8.0 but we want to upgrade Minor version from 8.0.37 to 8.0.40. This could be for any bug fix or new feature.
 Unlike Major version upgrade, Minor version upgrade is just updating Binaries of MySQL with newer version.
 
+If you have replicas, then it is a good practice to perform Minor upgrade on Replica first then do it on Primary. It works fine if Primary and Replica are on different minor versions.
+
 ### INSTALL OLDER VERSION
 
 ```sh
