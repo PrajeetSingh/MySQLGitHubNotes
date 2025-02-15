@@ -77,7 +77,7 @@ sudo apt install gnupg2 lsb-release ./percona-release_latest.generic_all.deb
 sudo percona-release setup -y ps80
 ```
 
-### Set environment variable for Major Version
+### Set environment variable for Major Version (Optional)
 ```sh
 VERSION=8.0.30-22-1
 echo $VERSION
