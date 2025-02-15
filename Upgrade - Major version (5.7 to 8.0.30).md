@@ -15,7 +15,7 @@ Below command will check all tables in databases, whether they are ready for upg
 ls /usr/bin/mysql*
 mysqlcheck -u root -p --all-databases --check-upgrade
 ```
-
+### MySQL Shell - Check MySQL server before upgrade
 There is a script provided by Oracle MySQL, that performs checks before we do the actual upgrade. It is run using MySQL Shell, in this we provide our Target version of MySQL to upgrade to and it performs checks, whether it can be successful or fail. If it fails, then we may think to use some lower minor version.
 
 https://dev.mysql.com/downloads/shell/
