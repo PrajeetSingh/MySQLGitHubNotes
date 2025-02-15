@@ -14,11 +14,11 @@ Like, below we don't have any error in configuration of parameters in my.cnf but
 ```
 
 Now, I deliberately added a wrong parameter and value "binnlog_format = ROU" and running this command will told me that I have an error at line number 11. 
+
 So, I can fix it, then run validation again and then startup mysql instance.
 
 ```sh
-# vi /etc/mysql/my
-my.cnf           my.cnf.fallback  my.cnf.old       mysql.cnf        mysql.conf.d/
+# vi /etc/mysql/my.cnf
 
 # mysqld --validate-config
 mysqld: [ERROR] Found option without preceding group in config file /etc/mysql/my.cnf at line 11.
@@ -35,7 +35,7 @@ mysqld: [ERROR] Fatal error in defaults handling. Program aborted!
      8  # * IMPORTANT: Additional settings that can override those from this file!
      9  #   The files must end with '.cnf', otherwise they'll be ignored.
     10  #
-    11  binnlog_format = ROU
+    11  binnlog_format = ROU                                # <---- Deliberately added this wrong parameter and its value to test this tool.
     12  !includedir /etc/mysql/conf.d/
     13  !includedir /etc/mysql/mysql.conf.d/
     14  !includedir /etc/mysql/percona-server.conf.d/
