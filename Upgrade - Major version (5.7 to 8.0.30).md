@@ -127,11 +127,11 @@ sudo systemctl status mysql
 ```
 
 ### Verify MySQL Instance
+```sh
 pidof mysqld
-
 netstat -ntlp | grep 3306
-
 mysql --version
+```
 
 ### Go through mysql logs and check Notes and Warnings in it.
 less /var/log/mysql/error.log
