@@ -41,3 +41,4 @@ mysqld: [ERROR] Fatal error in defaults handling. Program aborted!
     14  !includedir /etc/mysql/percona-server.conf.d/
 #
 ```
+Ideal thing is that this command gives no output, that means there is no Warning or Error and MySQL configuration file is perfectly fine.
