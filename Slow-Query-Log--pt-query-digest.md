@@ -2,6 +2,7 @@
 
 pt-query-digest utility comes with Percona Toolkit. It can read the queries from the slow query log and SHOW PROCESSLIST statement.
 
+Lets run some queries to get data in slow query log.
 ```sql
 mysql> select 'start', sleep(25), 'end';
 +-------+-----------+-----+
@@ -24,20 +25,22 @@ mysql> select * from city order by district limit 5;
 5 rows in set (0.01 sec)
 ```
 
-With above we got some data in slow query log.
+With queries we ran above we got some data in slow query log.
 ```sh
 ls -lrth /var/log/mysql/slowqueries.log
 -rw-r--r-- 1 mysql mysql 2.1K Feb 16 21:58 /var/log/mysql/slowqueries.log
 ```
 
-### Usage
+### Usage of pt-query-digest
 ```sh
 pt-query-digest /var/log/mysql/slowqueries.log
 ```
 
-We can see that report provided by it is quite detailed. "Query_time distribution" is important section, that focuses on offending queries.
+We can see below that report provided by it is quite detailed. "Query_time distribution" is important section, that focuses on offending queries.
 
-We can see in "Exec time" that query that took maximum time is 25 seconds. Rows fetched are 11. In "Profile" we can see most expensive queries and how many calls were made to it.
+We can see in "Exec time" that query that took maximum time is 25 seconds. Rows fetched are 11. 
+
+In "Profile" we can see the most expensive queries and how many calls were made to them.
 ### Example
 ```sh
 root@ip-172-31-92-192:~# pt-query-digest /var/log/mysql/slowqueries.log
