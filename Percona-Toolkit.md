@@ -46,3 +46,14 @@ ls /usr/bin/pt-*
 /usr/bin/pt-deadlock-logger  /usr/bin/pt-fingerprint            /usr/bin/pt-kill         /usr/bin/pt-query-digest          /usr/bin/pt-slave-restart  /usr/bin/pt-table-usage
 /usr/bin/pt-diskstats        /usr/bin/pt-fk-error-logger        /usr/bin/pt-mext         /usr/bin/pt-show-grants           /usr/bin/pt-stalk          /usr/bin/pt-upgrade
 ```
+
+### pg-mysql-summary -- Getting MySQL Report
+```sh
+# Before running, pls ensure that root@localhost has privileges to run it.
+show grants for 'root'@'localhost';
+grant all privileges on *.* to 'root'@'localhost' with grant option;
+flush privileges;
+
+# Now execute pt-mysql-summary
+pt-mysql-summary --user=root --password=<yourpassword>
+```
