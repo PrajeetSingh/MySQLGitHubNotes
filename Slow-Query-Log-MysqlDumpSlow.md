@@ -50,7 +50,7 @@ Run mysqldumpslow on sloq query log. It should show the problematic queries, tim
 mysqldumpslow /var/log/mysql/slowqueries.log
 ```
 
-Though, when I ran it, I had got below message
+Though, when I ran it, I had got below message. 
 ```sh
 root@ip:~# mysqldumpslow /var/log/mysql/slowqueries.log
 "mysqldumpslow.sh" is not currently compatible with Percona extended slow query
