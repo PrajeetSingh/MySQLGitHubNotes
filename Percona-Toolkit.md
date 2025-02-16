@@ -61,3 +61,14 @@ flush privileges;
 # Now execute pt-mysql-summary
 pt-mysql-summary --user=root --password=<yourpassword>
 ```
+
+### pt-summary -- Getting System Summary Report
+Whenever we create a ticket with Percona, this information can be helpful in attaching to that ticket for investigation.
+
+This report provides server info, like uptime, is it on-prem or on-cloud, o/s version, etc details, CPU architecture, processor details, memory details, mounted filesystems, disk info, LVMs, network interfaces, Transparent Huge Pages, 
+
+If DB server is under heavy load, running pt-summary and checking the report can help in identifying the bottleneck.
+
+```sh
+pt-summary
+```
