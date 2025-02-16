@@ -47,7 +47,11 @@ ls /usr/bin/pt-*
 /usr/bin/pt-diskstats        /usr/bin/pt-fk-error-logger        /usr/bin/pt-mext         /usr/bin/pt-show-grants           /usr/bin/pt-stalk          /usr/bin/pt-upgrade
 ```
 
-### pg-mysql-summary -- Getting MySQL Report
+### pt-mysql-summary -- Getting MySQL Report
+
+In output of pt-mysql-summary, you'll find a lot of very good information about servers, databases, replication, etc. 
+
+You can find startup time, port, processlist, config and usage details like buffer cache, etc, engines and their usage, Binary Logging, noteworthy variables, config file location, etc. in the report.
 ```sh
 # Before running, pls ensure that root@localhost has privileges to run it.
 show grants for 'root'@'localhost';

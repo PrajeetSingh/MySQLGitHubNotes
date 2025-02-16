@@ -1,4 +1,7 @@
 ## Percona Toolkit - pt-mysql-summary example
+When you will go through below output, you'll find a lot of very good information about server, databases, replication, etc. Currently, I haven't created any Replica for this Primary server, so there is no Replica info, otherwise you'll find that too.
+
+MySQL servers wise, you can find its startup time, port, processlist, config and usage details like buffer cache, etc, engines and their usage, Binary Logging, noteworthy variables, config file location, etc.
 
 ```sh
 ~# pt-mysql-summary --user=root --password=<your-password-here>
