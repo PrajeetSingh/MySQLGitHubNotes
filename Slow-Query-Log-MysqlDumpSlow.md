@@ -57,3 +57,16 @@ root@ip:~# mysqldumpslow /var/log/mysql/slowqueries.log
 log format. Please use "pt-query-digest" from Percona Toolkit instead
 (https://www.percona.com/doc/percona-toolkit/2.2/pt-query-digest.html).
 ```
+
+### Example output
+```sh
+Reading mysql slow query log from /var/log/mysql/slowqueries.log
+Count: 1  Time=4.32s (4s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
+ insert into t2 select * from t1
+
+Count: 3  Time=2.53s (7s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
+ insert into t2 select * from t1 limit N
+
+Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
+ insert into t1 select * from t1
+```
