@@ -1,7 +1,7 @@
 ## Percona Toolkit - pt-mysql-summary example
 
 ```sh
-~# pt-mysql-summary --user=root --password=password
+~# pt-mysql-summary --user=root --password=<your-password-here>
 mysql: [Warning] Using a password on the command line interface can be insecure.
 # Percona Toolkit MySQL Summary Report #######################
               System time | 2025-02-16 16:40:11 UTC (local TZ: UTC +0000)
