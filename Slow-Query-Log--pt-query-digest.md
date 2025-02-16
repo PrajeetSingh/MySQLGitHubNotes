@@ -1,6 +1,6 @@
 ## Slow Query Log - pt-query-digest utility from Percona Toolkit
 
-pt-query-digest utility comes with Percona Toolkit. It can read the queries from the slow query log and SHOW PROCESSLIST statement.
+**pt-query-digest** utility comes with Percona Toolkit. It can read the queries from the slow query log and SHOW PROCESSLIST statement.
 
 Lets run some queries to get data in slow query log.
 ```sql
