@@ -6,7 +6,6 @@
 * Enable Binary Logging
   * log-bin = /var/log/mysql/binlog/prod-bin
   * log-bin-index = /var/log/mysql/binlog/prod-bin.index
-
 * Setup unique server ID
   * server-id = 1
 * Create dedicated replication user
