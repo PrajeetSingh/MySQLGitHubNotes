@@ -36,6 +36,8 @@
   * cat /path/to/your/backup/directory/xtrabackup_binlog_info
 * Transfer the prepared backup to Replica VM
 
+"mariabackup --prepare" applies the transaction logs that were captured during the hot backup process to make the data files consistent.
+
 ```sh
 # On Primary:
 rsync -av --progress /tmp/mariadb_backup/ replica_user@10.128.0.5:/tmp/mariadb_restore/
@@ -59,23 +61,43 @@ chown -R mysql:mysql /var/lib/mysql
 
 *NOTE*: Ensure that output ends with `completed OK`. Above command copies the prepared backup files into the MariaDB data directory.
 
+* Start MariaDB service on Replica
+
+```sh
+systemctl start mariadb
+```
+
 * Point to replica to primary to start pulling changes from the primary
   * CHANGE MASTER STATEMENT / CHANGE REPLICATION SOURCE TO STATEMENT (MariaDB 10.5+)
 
 Example
 
-```sql
-CHANGE MASTER TO
-  MASTER_HOST='primary_ip_or_hostname',
-  MASTER_USER='replication_user',
-  MASTER_PASSWORD='replication_password',
-  MASTER_LOG_FILE='mariadb-bin.000001',  -- From xtrabackup_binlog_info
-  MASTER_LOG_POS=330;                   -- From xtrabackup_binlog_info
+```sh
+mariadb -u root -p
 ```
 
-* Start Replica
-  * `start replica;` or `start slave;`
-* Verify replication status
-  * `show replica status\G`
+```sql
+stop slave;
+-- or 
+stop replica;
 
-"mariabackup --prepare" applies the transaction logs that were captured during the hot backup process to make the data files consistent.
+CHANGE MASTER TO
+  MASTER_HOST='192.168.1.10',             -- Primary's IP (on-prem) or resolvable hostname
+  MASTER_USER='replica_user',
+  MASTER_PASSWORD='my_secure_replication_password',
+  MASTER_PORT=3306,
+  MASTER_LOG_FILE='mariadb-bin.000001',   -- File from xtrabackup_binlog_info
+  MASTER_LOG_POS=123;                     -- Position from xtrabackup_binlog_info
+```
+
+* Start replication on Replica and check status
+
+```sql
+start replica;
+-- or 
+start slave;
+
+show replica status\G
+```
+
+## Verification of Replica
