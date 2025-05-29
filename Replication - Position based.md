@@ -19,24 +19,28 @@
 
 * Good to create replication.cnf and enter below information in that and then include it in my.cnf file, otherwise use server.cnf file in /etc/my.cnf.d/.
 * Enable Relay Logs
-  * relay-log = /var/log/mysql/relay/replica-bin
-  * relay-log-index = /var/log/mysql/relay/replica-bin.index
+  * relay_log = /var/log/mysql/relay/replica-bin
+  * relay_log_index = /var/log/mysql/relay/replica-bin.index
 * Set unique server ID
-  * server-id = 2
+  * server_id = 2
 * Skip Replica to auto-start
-  * skip-replica-start
+  * skip_replica_start
 * Replica should be read only
-  * read-only
+  * read_only
 
 ## Replication Configuration
 
 * Take backup on Primary and get binary log file and position information from xtrabackup (or mariabackup for MariaDB). You can get this info from xtrabackup_binlog_info file in backup directory.
-  * mariabackup --backup --target-dir=/path/to/your/backup/directory --user=your_backup_user --password=your_backup_password
-  * mariabackup --prepare --target-dir=/path/to/your/backup/directory
-  * cat /path/to/your/backup/directory/xtrabackup_binlog_info
-* Transfer the prepared backup to Replica VM
+
+```sh
+mariabackup --backup --target-dir=/path/to/your/backup/directory --user=your_backup_user --password=your_backup_password
+mariabackup --prepare --target-dir=/path/to/your/backup/directory
+cat /path/to/your/backup/directory/xtrabackup_binlog_info
+```
 
 "mariabackup --prepare" applies the transaction logs that were captured during the hot backup process to make the data files consistent.
+
+* Transfer the prepared backup to Replica VM
 
 ```sh
 # On Primary:
@@ -90,7 +94,7 @@ CHANGE MASTER TO
   MASTER_LOG_POS=123;                     -- Position from xtrabackup_binlog_info
 ```
 
-* Start replication on Replica and check status
+* Start replication on Replica and check the status
 
 ```sql
 start replica;
@@ -101,3 +105,22 @@ show replica status\G
 ```
 
 ## Verification of Replica
+
+* On Replica, check the replica status.
+
+```sql
+show replica status\G
+-- or
+show slave status\G
+```
+
+Crucial lines are `Slave_IO_Running: Yes` and `Slave_SQL_Running: Yes`. Also check `Seconds_Behind_Master`, it should be 0 or close to 0.
+
+* Check Primary, to see if the Replica is connected.
+
+```sql
+show processlist;
+```
+
+Look for process with `User='replica_user'` and  `Command='Binlog Dump`. This confirms that the replica is connected and pulling binary logs.
+
