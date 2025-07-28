@@ -123,4 +123,3 @@ show processlist;
 ```
 
 Look for process with `User='replica_user'` and  `Command='Binlog Dump`. This confirms that the replica is connected and pulling binary logs.
-

@@ -1,4 +1,4 @@
-# Configure both Logical and Physical backup of a MariaDB Replica server.
+# Configure both Logical and Physical backup of a MariaDB Replica server
 
 Why Backup from the Replica?
 
@@ -88,7 +88,6 @@ mysqlcheck -u backup_user -p --all-databases
 grep -i "binlog" /backup/physical-replica-*/xtrabackup_binlog_info
 ```
 
-
 ## Backup Scripts
 
 ### Logical Backup Script
@@ -131,4 +130,41 @@ crontab -e
 ```sh
 gsutil cp /backup/*.tar.gz gs://your-gcs-bucket/
 gsutil cp /backup/*.sql gs://your-gcs-bucket/
+```
+
+## Restore (with Replication continuity)
+
+### From Logical Backup
+
+```sh
+mysql -u root -p < mariadb-replica-YYYY-MM-DD.sql
+```
+
+Look for `-- CHANGE MASTER TO` inside the dump to resume replication if needed.
+
+### From Physical Backup
+
+#### 1. Stop MariaDB
+
+```sh
+sudo systemctl stop mariadb
+```
+
+#### 2. Restore Data
+
+```sh
+sudo rsync -av /backup/physical-replica-YYYY-MM-DD/ /var/lib/mysql/
+sudo chown -R mysql:mysql /var/lib/mysql
+```
+
+#### 3. Start MariaDB
+
+```sh
+sudo systemctl start mariadb
+```
+
+### 4. Resume replication if neeeded using `xtrabackup_slave_info` file
+
+```sh
+cat /var/lib/mysql/xtrabackup_slave_info
 ```
