@@ -28,7 +28,7 @@ sudo apt update && sudo apt install mariadb-client mariadb-backup
 
 > CAUTION: Use `--single-transaction` and `--master-data=2`
 
-### ➤ Full Dump with Replication Coordinates
+### Full Dump with Replication Coordinates
 
 ```sh
 mysqldump -u backup_user -p --all-databases --single-transaction --master-data=2 --routines --events --triggers > /backup/mariadb-replica-logical-$(date +%F).sql
