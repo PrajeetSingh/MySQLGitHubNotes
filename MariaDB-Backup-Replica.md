@@ -7,3 +7,13 @@ Why Backup from the Replica?
 ✅ Safer for consistent reads
 
 ✅ Reduces impact on production writes
+
+## Prerequisites (For Replica)
+
+### 1. Create a dedicated backup user (on the replica)
+
+```sql
+create user 'backup_user'@'localhost' identified by 'MySecretPassword!';
+grant reload, lock tables, process, replication client, show databases, event, trigger, select on *.* to 'backup_user'@'localhost';
+flush privileges;
+```
