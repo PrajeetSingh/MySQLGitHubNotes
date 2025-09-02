@@ -98,12 +98,12 @@ rm -rf /var/lib/mysql/*
 
 ```sh
 # Run on Server B
-sudo mariadb-backup --copy-back --target-dir=/path/to/local/backups/server_b_backup
-sudo chown -R mysql:mysql /var/lib/mysql
+mariadb-backup --copy-back --target-dir=/path/to/local/backups/server_b_backup
+chown -R mysql:mysql /var/lib/mysql
 
 # Run on Server C
-sudo mariadb-backup --copy-back --target-dir=/path/to/local/backups/server_c_backup
-sudo chown -R mysql:mysql /var/lib/mysql
+mariadb-backup --copy-back --target-dir=/path/to/local/backups/server_c_backup
+chown -R mysql:mysql /var/lib/mysql
 ```
 
 4. Restart MariaDB and Re-establish Replication
@@ -112,7 +112,7 @@ Start the MariaDB service on both servers. Then, reconfigure replication using t
 
 ```sh
 # Start the service on Server B and C
-sudo systemctl start mariadb
+systemctl start mariadb
 ```
 
 ```sql
